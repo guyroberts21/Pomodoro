@@ -1,0 +1,56 @@
+/* Main */
+body {
+    color: #fff;
+    font-size: 25px;
+    font-family: Helvetica, sans-serif;
+    box-sizing: border-box;
+    background-color: #C55E5E;
+}
+
+.title {
+    text-align: center;
+}
+
+
+/* Pomodoro */
+#pomodoro {
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.pomodoro-count {
+    padding-top: .5em;
+    padding-right: .5em;
+    text-align: right;
+    font-size: 0.75em;
+}
+
+#timer {
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+}
+
+#pomodoro button {
+    padding: 0.5em 2em;
+    border: 1px solid #fff;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    margin: 1em 0;
+}
+
+.timer-buttons {
+   display: block;
+   width: 200px;
+   margin: 0 auto;
+}
+
+.timer-buttons button {
+    background-color: #C55E5E;
+}
+
+button:hover {
+    background-color: #b3302d;
+}
