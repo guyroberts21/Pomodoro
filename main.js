@@ -19,7 +19,9 @@ function timer(s) {
     s--;
     seconds--; // added
     
-    if (s < 0) clearInterval(interval);
+    if (s < 0) {
+      clearInterval(interval);
+    }
   }, 1000);
 }
 
@@ -73,6 +75,7 @@ function clickOutside(e) {
 // Side Nav
 const hamburger = document.getElementById("hamburger-menu");
 const sidenav = document.querySelector('.sidenav');
+const dateText = document.getElementById('date');
 
 hamburger.addEventListener('click', () => {
   sidenav.style.width = "250px";
@@ -83,7 +86,11 @@ closeBtn.addEventListener('click', () => {
   sidenav.style.width = "0";
 })
 
-
+let currentDate = new Date();
+let day = String(currentDate.getDate()).padStart(2, '0');
+let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+let year = currentDate.getFullYear();
+dateText.textContent = `${day}/${month}/${year}`;
 
 /* Extra
 

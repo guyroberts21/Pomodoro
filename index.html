@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" href="todo.css">
     <title>Pomodoro Timer</title>
 </head>
 <body>
@@ -43,18 +44,21 @@
         </div>
     </div>
 
+
     <div class="todo">
         <h1>TODO</h1>
         <form>
             <input id="item" type="text" placeholder="Enter task description" required />
+            <input type="submit" value="ADD">
         </form>
         <h2>Todos</h2>
         <ul></ul>
-        <button>Clear All</button>
+        <button id="clear">Clear All</button>
     </div>
-    
+
     <div class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <h3 id="date"></h3>
     </div>
     <script src="main.js"></script>
     <script src="todo.js"></script>
