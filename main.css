@@ -3,6 +3,7 @@ body {
     color: #fff;
     font-size: 25px;
     font-family: Helvetica, sans-serif;
+    line-height: 1.4;
     box-sizing: border-box;
     background-color: #C55E5E;
 }
@@ -11,9 +12,113 @@ body {
     text-align: center;
 }
 
+/* Side Menu */
+#hamburger-menu {
+    position: absolute;
+    top: 1em; left: 1em;
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #b3302d;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 2em;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0.2em;
+    right: 0.5em;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5em;
+    transition: color 0.15s ease-in;
+}
+
+.sidenav .closebtn:hover {
+    color: #fff;
+}
+
+/* Settings and Modal */
+.settings {
+    position: absolute;
+    top: 0.4em;
+    left: 0.5em;
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+.settings:hover {
+    transform: scale(1.25);
+}
+
+.modal {
+    color: #000;
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 5% auto;
+    padding: 1em;
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2), 0 7px 20px 0 rgba(0, 0, 0, .17) ;
+    animation-name: modalOpen;
+    animation-duration: 1s;
+}
+
+.modal-close-btn {
+    color: #ccc;
+    float: right;
+    font-size: 1.5em;
+    transition: color;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content input[type=text] {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em 1em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content input[type=submit] {
+    width: 100%;
+    background-color: #46c267;
+    color: #fff;
+    padding: 1em;
+    margin: 0.5em 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 /* Pomodoro */
 #pomodoro {
+    position: relative;
     width: 600px;
     margin: 0 auto;
     border: 1px solid black;
@@ -37,7 +142,6 @@ body {
     border: 1px solid #fff;
     text-align: center;
     color: #fff;
-    cursor: pointer;
     margin: 1em 0;
 }
 
@@ -45,6 +149,7 @@ body {
    display: block;
    width: 200px;
    margin: 0 auto;
+   cursor: pointer;
 }
 
 .timer-buttons button {
@@ -53,4 +158,15 @@ body {
 
 button:hover {
     background-color: #b3302d;
+}
+
+/* Disabled buttons */
+.timer-buttons .disabled-btn {
+    opacity: 50%;
+    cursor: not-allowed;
+}
+
+@keyframes modalOpen {
+    from {opacity: 0}
+    to {opacity: 1}
 }
