@@ -166,7 +166,7 @@ input::placeholder {
     cursor: pointer;
 }
 
-button:hover {
+.timer-buttons button:hover {
     background-color: #b3302d;
 }
 

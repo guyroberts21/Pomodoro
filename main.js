@@ -49,6 +49,7 @@ function timer(s) {
   }, 1000);
 }
 
+// Update the timer
 function updateDisplay(sec) {
   const minutes = Math.floor(sec / 60);
   let secondsLeft = sec % 60;
@@ -75,6 +76,7 @@ for (let input of setTimes) {
   input.addEventListener('input', onlyNumbers);
 }
 
+// Allow only number input when changing the timer settings (modal)
 function onlyNumbers(e) {
   let reg = /^\d+$/;
   if (reg.test(e.target.value)) {
@@ -149,35 +151,3 @@ let day = String(currentDate.getDate()).padStart(2, '0');
 let month = String(currentDate.getMonth() + 1).padStart(2, '0');
 let year = currentDate.getFullYear();
 dateText.textContent = `${day}/${month}/${year}`;
-
-
-
-
-
-
-
-
-
-
-
-/* Extra
-
-function toggle(button, state) {
-  button.disabled = state;
-  button.classList.toggle('disabled-btn');
-}
-
-function stopTimer(event) {
-  // startBtn.disabled = false;
-  // startBtn.classList.remove('disabled-btn');
-  toggle(startBtn)
-  clearInterval(interval);
-  // e.target.disabled = true;
-  // e.target.classList.add('disabled-btn');
-}
-
-timerButtons.forEach(button => button.addEventListener('click', event => {
-  (event.target.textContent == "START") ? timer(seconds) : stopTimer(event);
-}));
-
-*/

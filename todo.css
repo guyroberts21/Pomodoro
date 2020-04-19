@@ -6,44 +6,96 @@
 .todo input[type=text] {
     box-sizing: border-box;
     width: 60%;
-    padding: 0.5em 1em;
+    padding: 1em 0 1em 0.5em;
     margin-bottom: 0.7em;
+    margin-right: 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    border-radius: 0.5em;
+    box-shadow: 2px 1px 1px rgba(0, 0, 0, .5);
 }
 
-.todo input[type=submit] {
-    width: 10%;
-    padding: 0.5em 1em;
-    background-color: #474747;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-}
-
-.todo input[type=submit]:hover {
-    
-    transition: background-color 0.15s ease-in;
-    background-color: #46c267;
-}
-
-.todo button {
-    font-size: 0.5em;
-    margin: 0 1em;
-    padding: 0.3em 1em;
-    border: 1px solid #000;
-    border-radius: 5px;
+#add-item {
+    position: relative;
+    top: 3px;
+    margin: 0;
+    font-size: 1.5rem;
     color: #000;
-    background-color: #e36639;
+    background-color: #ccc;
+    cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 5px 10px;
+}
+
+#add-item:hover {
+    transition: background-color 0.15s ease-in;
+    /* background-color: #46c267; */
+    background-color: #454545;
+}
+
+.todo ul {
+    list-style-type: none;
+    padding: 0;
+    color: #000;
+}
+
+.todo ul li {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, .5);
+    background-color: #eee;
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+}
+
+/* Style the checkboxes */
+.todo input[type=checkbox] {
+    -webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+    position: relative;
+    top: 5px;
+}
+
+.todo input[type=checkbox]:checked {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+}
+
+.todo input[type=checkbox]:checked:after {
+    content: '\2713';
+    font-size: 14px;
+    color: #99a1a7;
+    position: absolute;
+    top: 0; 
+    left: 3px;
+}
+
+.todo .delete {
+    font-size: 0.7em;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    border: none;
+    background-color: #ccc;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
 }
 
 #clear {
+    font-size: 0.7em;
     padding: 0.5em 2em;
-    border: 1px solid #000;
-    background-color: #b3302d;
-    color: white;
+    border: 2px solid rgba(0, 0, 0, .5);
+    border-radius: 0.5em;
+    background-color: #ccc;
+    color: #000;
 }
 
 #clear:hover {
