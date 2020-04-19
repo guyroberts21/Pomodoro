@@ -2,13 +2,17 @@ const container = document.getElementById('pomodoro');
 const displayTimer = document.getElementById('timer');
 const stopBtn = document.querySelector('.stop-timer')
 const startBtn = document.querySelector('.start-timer')
-
 const timerButtons = document.querySelectorAll('.timer-buttons > button');
 
 // Get user break/work times
 const workTime = document.getElementById('wtime');
 const breakTime = document.getElementById('btime');
 
+// Track number of pomodoros
+const pomodoroNum = document.getElementById('pomodoro-count');
+let pomodoroCounter = 1;
+
+// Default variables
 let workSeconds = 25 * 60;
 let breakSeconds = 5 * 60; 
 let interval;
@@ -25,10 +29,22 @@ function timer(s) {
     if (s < 0) {
       workSeconds = parseInt(workTime.value) ? parseInt(workTime.value) : 25 * 60;
       breakSeconds = parseInt(breakTime.value) ? parseInt(breakTime.value) : 5 * 60; 
+
       s = breakStartingNext ? breakSeconds : workSeconds
-      if (breakStartingNext) container.style.backgroundColor = '#2ac200';
-      else container.style.backgroundColor = '#C55E5E';
+      
+      if (breakStartingNext) {
+        container.style.backgroundColor = '#2ac200';
+      }
+      else {
+        container.style.backgroundColor = '#C55E5E';
+      }
+
       breakStartingNext = !breakStartingNext;
+
+      if (breakStartingNext) {
+        pomodoroCounter++;
+        pomodoroNum.textContent = pomodoroCounter.toString();
+      }
     }
   }, 1000);
 }
