@@ -4,12 +4,27 @@ const startBtn = document.querySelector('.start-timer')
 
 const timerButtons = document.querySelectorAll('.timer-buttons > button');
 
-let seconds = 25 * 60;
+// Get user break/work times
+const workTime = document.getElementById('wtime');
+const breakTime = document.getElementById('btime');
+
+let workSeconds = 25 * 60;
+let breakSeconds = 5 * 60; 
 let interval;
+let breakStartingNext = true; // Boolean used to alternate between break and work times
+
+// Only allow number input on modal 
+function onlyNumbers(inputVal) {
+  let reg = /^\d+$/;
+  if (reg.test(inputVal)) {
+    document.querySelector('.time-input').value = inputVal;
+  } else {
+    let txt = inputVal.slice(0, -1);
+    document.querySelector('.time-input').value = txt;
+  }
+}
 
 function timer(s) {
-  // stopBtn.disabled = false;  // added
-  // stopBtn.classList.remove('disabled-btn'); // added
   interval = setInterval(() => {
 
     const minutes = Math.floor(s / 60);
@@ -17,10 +32,13 @@ function timer(s) {
     
     displayTimer.textContent = `${minutes}:${secondsLeft < 10 ? "0" + secondsLeft : secondsLeft}`;
     s--;
-    seconds--; // added
+    
+    if (breakStartingNext) workSeconds--;
+    else breakSeconds--;
     
     if (s < 0) {
-      clearInterval(interval);
+      breakStartingNext = !breakStartingNext;
+      s = breakStartingNext ? breakSeconds : workSeconds
     }
   }, 1000);
 }
@@ -32,7 +50,10 @@ function stopTimer(e) {
 }
 
 function startTimer(e) {
-  timer(seconds);
+  workSeconds = workTime.value ? parseInt(workTime.value) * 60 : 25 * 60;
+  breakSeconds = breakTime.value ? parseInt(breakTime.value) * 60 : 5 * 60;
+
+  timer(breakStartingNext ? workSeconds : breakSeconds);
   stopBtn.disabled = false; 
   stopBtn.classList.remove('disabled-btn');
 }
@@ -72,6 +93,10 @@ function clickOutside(e) {
   }
 }
 
+function submit() {
+  
+}
+
 // Side Nav
 const hamburger = document.getElementById("hamburger-menu");
 const sidenav = document.querySelector('.sidenav');
@@ -91,6 +116,16 @@ let day = String(currentDate.getDate()).padStart(2, '0');
 let month = String(currentDate.getMonth() + 1).padStart(2, '0');
 let year = currentDate.getFullYear();
 dateText.textContent = `${day}/${month}/${year}`;
+
+
+
+
+
+
+
+
+
+
 
 /* Extra
 

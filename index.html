@@ -35,10 +35,10 @@
         <div class="modal-content">
             <span class="modal-close-btn">&times;</span>
             <label for="wtime">Work Time</label>
-            <input type="text" id="wtime" name="worktime" placeholder="25:00">
+            <input type="text" class="time-input" id="wtime" name="worktime" placeholder="25:00" oninput="onlyNumbers(value)">
 
             <label for="btime">Break Time</label>
-            <input type="text" id="btime" name="breaktime" placeholder="5:00">
+            <input type="text" class="time-input" id="btime" name="breaktime" placeholder="5:00" oninput="onlyNumbers(value)">
 
             <input type="submit" value="Done">
         </div>
