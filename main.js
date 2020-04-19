@@ -1,3 +1,4 @@
+const container = document.getElementById('pomodoro');
 const displayTimer = document.getElementById('timer');
 const stopBtn = document.querySelector('.stop-timer')
 const startBtn = document.querySelector('.start-timer')
@@ -13,34 +14,30 @@ let breakSeconds = 5 * 60;
 let interval;
 let breakStartingNext = true; // Boolean used to alternate between break and work times
 
-// Only allow number input on modal 
-function onlyNumbers(inputVal) {
-  let reg = /^\d+$/;
-  if (reg.test(inputVal)) {
-    document.querySelector('.time-input').value = inputVal;
-  } else {
-    let txt = inputVal.slice(0, -1);
-    document.querySelector('.time-input').value = txt;
-  }
-}
-
 function timer(s) {
   interval = setInterval(() => {
-
-    const minutes = Math.floor(s / 60);
-    let secondsLeft = s % 60;
-    
-    displayTimer.textContent = `${minutes}:${secondsLeft < 10 ? "0" + secondsLeft : secondsLeft}`;
+    updateDisplay(s);
     s--;
     
     if (breakStartingNext) workSeconds--;
     else breakSeconds--;
     
     if (s < 0) {
-      breakStartingNext = !breakStartingNext;
+      workSeconds = parseInt(workTime.value) ? parseInt(workTime.value) : 25 * 60;
+      breakSeconds = parseInt(breakTime.value) ? parseInt(breakTime.value) : 5 * 60; 
       s = breakStartingNext ? breakSeconds : workSeconds
+      if (breakStartingNext) container.style.backgroundColor = '#2ac200';
+      else container.style.backgroundColor = '#C55E5E';
+      breakStartingNext = !breakStartingNext;
     }
   }, 1000);
+}
+
+function updateDisplay(sec) {
+  const minutes = Math.floor(sec / 60);
+  let secondsLeft = sec % 60;
+
+  displayTimer.textContent = `${minutes}:${secondsLeft < 10 ? "0" + secondsLeft : secondsLeft}`;
 }
 
 function stopTimer(e) {
@@ -49,13 +46,27 @@ function stopTimer(e) {
   clearInterval(interval);
 }
 
-function startTimer(e) {
-  workSeconds = workTime.value ? parseInt(workTime.value) * 60 : 25 * 60;
-  breakSeconds = breakTime.value ? parseInt(breakTime.value) * 60 : 5 * 60;
-
+function startTimer(e) {  
   timer(breakStartingNext ? workSeconds : breakSeconds);
   stopBtn.disabled = false; 
   stopBtn.classList.remove('disabled-btn');
+}
+
+// Only allow number input on modal
+const setTimes = document.getElementsByClassName('time-input');
+
+for (let input of setTimes) {
+  input.addEventListener('input', onlyNumbers);
+}
+
+function onlyNumbers(e) {
+  let reg = /^\d+$/;
+  if (reg.test(e.target.value)) {
+    e.target.value = e.target.value;
+  } else {
+    let txt = e.target.value.slice(0, -1);
+    e.target.value = txt;
+  }
 }
 
 // Start and Stop Buttons
@@ -94,7 +105,12 @@ function clickOutside(e) {
 }
 
 function submit() {
-  
+  stopTimer();
+  workSeconds = parseInt(workTime.value) * 60;
+  breakSeconds = parseInt(breakTime.value) * 60;
+  modal.style.display = 'none';
+  updateDisplay(workSeconds);
+  container.style.backgroundColor = '#C55E5E';
 }
 
 // Side Nav
@@ -111,6 +127,7 @@ closeBtn.addEventListener('click', () => {
   sidenav.style.width = "0";
 })
 
+// get date on sidenav
 let currentDate = new Date();
 let day = String(currentDate.getDate()).padStart(2, '0');
 let month = String(currentDate.getMonth() + 1).padStart(2, '0');
